@@ -1,6 +1,6 @@
 local getConfig = GetModConfigData
 
-local crsCannedFoodDST = getConfig("cfgTestCheck", "workshop-000000000") and "workshop-000000000" or "crsCannedFoodDST"
+local crsCannedFoodDST = getConfig("cfgTestCheck", "workshop-1361546797") and "workshop-1361546797" or "crsCannedFoodDST"
 
 local function crsCannedFood(prefab, cooked, cfg)
     local mult = getConfig("cfgCooked"..cfg, crsCannedFoodDST)

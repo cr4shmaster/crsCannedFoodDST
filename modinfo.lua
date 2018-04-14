@@ -1,9 +1,9 @@
 -- More information here: https://sites.google.com/view/cr4shmaster/canned-food-ds-dst
 
-name = "Canned Food v1.0"
+name = "Canned Food v1.0.1"
 description = "Store your food safely forever!"
 author = "cr4shmaster"
-version = "1.0"
+version = "1.0.1"
 forumthread = ""
 api_version = 10
 all_clients_require_mod = true
