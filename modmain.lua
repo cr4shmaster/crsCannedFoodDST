@@ -11,8 +11,8 @@ local TECH = _G.TECH
 local getConfig = GetModConfigData
 local KnownModIndex = _G.KnownModIndex
 
-local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees for Friends is enabled
-local mf = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
+local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees and Flowers for Friends is enabled
+local mfr = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
 
 local crsPrefabs = {
     {name = "bananas",          cfg = "Bananas",        raw = "cave_banana"},
@@ -53,7 +53,7 @@ local mfPrefabs = {
     {name = "strawberries",     cfg = "Strawberries",   raw = "strawbbit"},
     {name = "tomatoes",         cfg = "Tomatoes",       raw = "tomatobit"}
 }
-if mf then for k = 1, #mfPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = mfPrefabs[k] end end
+if mfr then for k = 1, #mfPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = mfPrefabs[k] end end
 
 STRINGS.NAMES.CANNED_BANANAS = "Canned Bananas"
 STRINGS.NAMES.CANNED_BERRIES = "Canned Berries"
@@ -81,7 +81,7 @@ if bbt then
     STRINGS.NAMES.CANNED_APPLES = "Canned Apples"
 end
 
-if mf then
+if mfr then
     STRINGS.NAMES.CANNED_STRAWBERRIES = "Canned Strawberries"
     STRINGS.NAMES.CANNED_GRAPES = "Canned Grapes"
     STRINGS.NAMES.CANNED_TOMATOES = "Canned Tomatoes"

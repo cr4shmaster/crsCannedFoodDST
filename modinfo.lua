@@ -74,14 +74,14 @@ local crsPrefabs = {
     {"Watermelons"},
 }
 
-local bbtPrefabs = { -- Birds and Berries and Trees for Friends
+local bbtPrefabs = { -- Birds and Berries and Trees and Flowers for Friends
     {"Apples"},
     {"Blueberries"},
     {"Greenberries"},
     {"Pineapples"},
 }
 
-local mfPrefabs = {-- More Fruits
+local mfrPrefabs = { -- More Fruits
     {"Grapes"},
     {"Lemons"},
     {"Limes"},
@@ -100,7 +100,7 @@ local function crsDivide(name, title)
 end
 
 configuration_options = {
-    crsDivide("CF", "Canned Food Settings"),
+    crsDivide("CNF", "Canned Food Settings"),
     {
         name = "cfgRecipeTab",
         label = "Recipe Tab",
@@ -144,7 +144,7 @@ end
 crsAddOptions(crsPrefabs)
 configuration_options[#configuration_options] = crsDivide("BBT", "Birds and Berries and Trees")
 crsAddOptions(bbtPrefabs)
-configuration_options[#configuration_options] = crsDivide("MF", "More Fruits")
-crsAddOptions(mfPrefabs)
-configuration_options[#configuration_options] = crsDivide("X", "Other")
+configuration_options[#configuration_options] = crsDivide("MFR", "More Fruits")
+crsAddOptions(mfrPrefabs)
+configuration_options[#configuration_options] = crsDivide("ABC", "Other")
 configuration_options[#configuration_options+1] = {name = "cfgTestCheck", label = "Installed", options = {{description = "Yes", data = true},},default = true,}
