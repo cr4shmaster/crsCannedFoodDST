@@ -1,5 +1,8 @@
 local getConfig = GetModConfigData
 
+local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees for Friends is enabled
+local mf = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
+
 local crsCannedFoodDST = getConfig("cfgTestCheck", "workshop-1361546797") and "workshop-1361546797" or "crsCannedFoodDST"
 
 local function crsCannedFood(prefab, cooked, cfg)
@@ -64,4 +67,16 @@ return crsCannedFood("bananas", "cave_banana_cooked", "Bananas"),
         crsCannedFood("pomegranates", "pomegranate_cooked", "Pomegranates"),
         crsCannedFood("pumpkins", "pumpkin_cooked", "Pumpkins"),
         crsCannedFood("red_shrooms", "red_cap_cooked", "RedShrooms"),
-        crsCannedFood("watermelons", "watermelon_cooked", "Watermelons")
+        crsCannedFood("watermelons", "watermelon_cooked", "Watermelons"),
+
+        bbt and crsCannedFood("blueberries", "berrybl_cooked", "Blueberries") or nil,
+        bbt and crsCannedFood("greenberries", "berrygr_cooked", "Greenberries") or nil,
+        bbt and crsCannedFood("pineapples", "pappfruit_cooked", "Pineapples") or nil,
+        bbt and crsCannedFood("apples", "treeapple", "Apples") or nil,
+
+        mf and crsCannedFood("strawberries", "strawbbit_cooked", "Strawberries") or nil,
+        mf and crsCannedFood("grapes", "grapebbit_cooked", "Grapes") or nil,
+        mf and crsCannedFood("tomatoes", "tomatobit_cooked", "Tomatoes") or nil,
+        mf and crsCannedFood("oranges", "orangeitm", "Oranges") or nil,
+        mf and crsCannedFood("lemons", "lemonitem", "Lemons") or nil,
+        mf and crsCannedFood("limes", "limelitem", "Limes") or nil

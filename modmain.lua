@@ -2,12 +2,58 @@ PrefabFiles = {
     "canned_food",
 }
 
-local STRINGS = GLOBAL.STRINGS
-local RECIPETABS = GLOBAL.RECIPETABS
-local Recipe = GLOBAL.Recipe
-local Ingredient = GLOBAL.Ingredient
-local TECH = GLOBAL.TECH
+local _G = GLOBAL
+local STRINGS = _G.STRINGS
+local RECIPETABS = _G.RECIPETABS
+local Recipe = _G.Recipe
+local Ingredient = _G.Ingredient
+local TECH = _G.TECH
 local getConfig = GetModConfigData
+local KnownModIndex = _G.KnownModIndex
+
+local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees for Friends is enabled
+local mf = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
+
+local crsPrefabs = {
+    {name = "bananas",          cfg = "Bananas",        raw = "cave_banana"},
+    {name = "berries",          cfg = "Berries",        raw = "berries"},
+    {name = "berries_juicy",    cfg = "BerriesJuicy",   raw = "berries_juicy"},
+    {name = "blue_shrooms",     cfg = "BlueShrooms",    raw = "blue_cap"},
+    {name = "cactus",           cfg = "Cactus",         raw = "cactus_meat"},
+    {name = "carrots",          cfg = "Carrots",        raw = "carrot"},
+    {name = "corn",             cfg = "Corn",           raw = "corn"},
+    {name = "durians",          cfg = "Durians",        raw = "durian"},
+    {name = "dragonfruits",     cfg = "Dragonfruits",   raw = "dragonfruit"},
+    {name = "eels",             cfg = "Eels",           raw = "eel"},
+    {name = "eggplants",        cfg = "Eggplants",      raw = "eggplant"},
+    {name = "fish",             cfg = "Fish",           raw = "fish"},
+    {name = "green_shrooms",    cfg = "GreenShrooms",   raw = "green_cap"},
+    {name = "honey",            cfg = "Honey",          raw = "honey"},
+    {name = "pomegranates",     cfg = "Pomegranates",   raw = "pomegranate"},
+    {name = "pumpkins",         cfg = "Pumpkins",       raw = "pumpkin"},
+    {name = "red_shrooms",      cfg = "RedShrooms",     raw = "red_cap"},
+    {name = "watermelons",      cfg = "Watermelons",    raw = "watermelon"}
+}
+
+-- Birds and Berries and Trees for Friends
+local bbtPrefabs = {
+    {name = "apples",           cfg = "Apples",         raw = "treeapple"},
+    {name = "blueberries",      cfg = "Blueberries",    raw = "berrybl"},
+    {name = "greenberries",     cfg = "Greenberries",   raw = "berrygr"},
+    {name = "pineapples",       cfg = "Pineapples",     raw = "pappfruit"}
+}
+if bbt then for k = 1, #bbtPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = bbtPrefabs[k] end end
+
+-- More Fruits
+local mfPrefabs = {
+    {name = "grapes",           cfg = "Grapes",         raw = "grapebbit"},
+    {name = "lemons",           cfg = "Lemons",         raw = "lemonitem"},
+    {name = "limes",            cfg = "Limes",          raw = "limelitem"},
+    {name = "oranges",          cfg = "Oranges",        raw = "orangeitm"},
+    {name = "strawberries",     cfg = "Strawberries",   raw = "strawbbit"},
+    {name = "tomatoes",         cfg = "Tomatoes",       raw = "tomatobit"}
+}
+if mf then for k = 1, #mfPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = mfPrefabs[k] end end
 
 STRINGS.NAMES.CANNED_BANANAS = "Canned Bananas"
 STRINGS.NAMES.CANNED_BERRIES = "Canned Berries"
@@ -27,6 +73,22 @@ STRINGS.NAMES.CANNED_POMEGRANATES = "Canned Pomegranates"
 STRINGS.NAMES.CANNED_PUMPKINS = "Canned Pumpkins"
 STRINGS.NAMES.CANNED_RED_SHROOMS = "Canned Red Mushrooms"
 STRINGS.NAMES.CANNED_WATERMELONS = "Canned Watermelons"
+
+if bbt then
+    STRINGS.NAMES.CANNED_BLUEBERRIES = "Canned Blueberries"
+    STRINGS.NAMES.CANNED_GREENBERRIES = "Canned Greenberries"
+    STRINGS.NAMES.CANNED_PINEAPPLES = "Canned Pineapples"
+    STRINGS.NAMES.CANNED_APPLES = "Canned Apples"
+end
+
+if mf then
+    STRINGS.NAMES.CANNED_STRAWBERRIES = "Canned Strawberries"
+    STRINGS.NAMES.CANNED_GRAPES = "Canned Grapes"
+    STRINGS.NAMES.CANNED_TOMATOES = "Canned Tomatoes"
+    STRINGS.NAMES.CANNED_ORANGES = "Canned Oranges"
+    STRINGS.NAMES.CANNED_LEMONS = "Canned Lemons"
+    STRINGS.NAMES.CANNED_LIMES = "Canned Limes"
+end
 
 -- RECIPES --
 
@@ -53,56 +115,11 @@ local crsRecipeTechs = {
 }
 local recipeTech = crsRecipeTechs[getConfig("cfgRecipeTech")]
 
-local canned_bananas = AddRecipe("canned_bananas", {Ingredient("cave_banana", getConfig("cfgRawBananas")),}, recipeTab, recipeTech, nil, nil, true)
-canned_bananas.atlas = "images/inventoryimages/bananas.xml"
+local function crsAddRecipe(name, cfg, raw)
+    local mats = {Ingredient(raw, getConfig("cfgRaw"..cfg))}
+    return AddRecipe("canned_"..name, mats, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/"..name..".xml")
+end
 
-local canned_berries = AddRecipe("canned_berries", {Ingredient("berries", getConfig("cfgRawBerries")),}, recipeTab, recipeTech, nil, nil, true)
-canned_berries.atlas = "images/inventoryimages/berries.xml"
-
-local canned_berries_juicy = AddRecipe("canned_berries_juicy", {Ingredient("berries_juicy", getConfig("cfgRawBerriesJuicy")),}, recipeTab, recipeTech, nil, nil, true)
-canned_berries_juicy.atlas = "images/inventoryimages/berries_juicy.xml"
-
-local canned_blue_shrooms = AddRecipe("canned_blue_shrooms", {Ingredient("blue_cap", getConfig("cfgRawBlueShrooms")),}, recipeTab, recipeTech, nil, nil, true)
-canned_blue_shrooms.atlas = "images/inventoryimages/blue_shrooms.xml"
-
-local canned_cactus = AddRecipe("canned_cactus", {Ingredient("cactus_meat", getConfig("cfgRawCactus")),}, recipeTab, recipeTech, nil, nil, true)
-canned_cactus.atlas = "images/inventoryimages/cactus.xml"
-
-local canned_carrots = AddRecipe("canned_carrots", {Ingredient("carrot", getConfig("cfgRawCarrots")),}, recipeTab, recipeTech, nil, nil, true)
-canned_carrots.atlas = "images/inventoryimages/carrots.xml"
-
-local canned_corn = AddRecipe("canned_corn", {Ingredient("corn", getConfig("cfgRawCorn")),}, recipeTab, recipeTech, nil, nil, true)
-canned_corn.atlas = "images/inventoryimages/corn.xml"
-
-local canned_durians = AddRecipe("canned_durians", {Ingredient("durian", getConfig("cfgRawDurians")),}, recipeTab, recipeTech, nil, nil, true)
-canned_durians.atlas = "images/inventoryimages/durians.xml"
-
-local canned_dragonfruits = AddRecipe("canned_dragonfruits", {Ingredient("dragonfruit", getConfig("cfgRawDragonfruits")),}, recipeTab, recipeTech, nil, nil, true)
-canned_dragonfruits.atlas = "images/inventoryimages/dragonfruits.xml"
-
-local canned_eels = AddRecipe("canned_eels", {Ingredient("eel", getConfig("cfgRawEels")),}, recipeTab, recipeTech, nil, nil, true)
-canned_eels.atlas = "images/inventoryimages/eels.xml"
-
-local canned_eggplants = AddRecipe("canned_eggplants", {Ingredient("eggplant", getConfig("cfgRawEggplants")),}, recipeTab, recipeTech, nil, nil, true)
-canned_eggplants.atlas = "images/inventoryimages/eggplants.xml"
-
-local canned_fish = AddRecipe("canned_fish", {Ingredient("fish", getConfig("cfgRawFish")),}, recipeTab, recipeTech, nil, nil, true)
-canned_fish.atlas = "images/inventoryimages/fish.xml"
-
-local canned_green_shrooms = AddRecipe("canned_green_shrooms", {Ingredient("green_cap", getConfig("cfgRawGreenShrooms")),}, recipeTab, recipeTech, nil, nil, true)
-canned_green_shrooms.atlas = "images/inventoryimages/green_shrooms.xml"
-
-local canned_honey = AddRecipe("canned_honey", {Ingredient("honey", getConfig("cfgRawHoney")),}, recipeTab, recipeTech, nil, nil, true)
-canned_honey.atlas = "images/inventoryimages/honey.xml"
-
-local canned_pomegranates = AddRecipe("canned_pomegranates", {Ingredient("pomegranate", getConfig("cfgRawPomegranates")),}, recipeTab, recipeTech, nil, nil, true)
-canned_pomegranates.atlas = "images/inventoryimages/pomegranates.xml"
-
-local canned_pumpkins = AddRecipe("canned_pumpkins", {Ingredient("pumpkin", getConfig("cfgRawPumpkins")),}, recipeTab, recipeTech, nil, nil, true)
-canned_pumpkins.atlas = "images/inventoryimages/pumpkins.xml"
-
-local canned_red_shrooms = AddRecipe("canned_red_shrooms", {Ingredient("red_cap", getConfig("cfgRawRedShrooms")),}, recipeTab, recipeTech, nil, nil, true)
-canned_red_shrooms.atlas = "images/inventoryimages/red_shrooms.xml"
-
-local canned_watermelons = AddRecipe("canned_watermelons", {Ingredient("watermelon", getConfig("cfgRawWatermelons")),}, recipeTab, recipeTech, nil, nil, true)
-canned_watermelons.atlas = "images/inventoryimages/watermelons.xml"
+for k = 1, #crsPrefabs, 1 do
+    crsAddRecipe(crsPrefabs[k].name, crsPrefabs[k].cfg, crsPrefabs[k].raw)
+end

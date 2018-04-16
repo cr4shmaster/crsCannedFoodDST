@@ -1,9 +1,9 @@
 -- More information here: https://sites.google.com/view/cr4shmaster/canned-food-ds-dst
 
-name = "Canned Food v1.0.1"
+name = "Canned Food v1.0.2"
 description = "Store your food safely forever!"
 author = "cr4shmaster"
-version = "1.0.1"
+version = "1.0.2"
 forumthread = ""
 api_version = 10
 all_clients_require_mod = true
@@ -12,10 +12,12 @@ client_only_mod = false
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
+
 local crsToggle = {
     {description = "Enabled", data = true},
     {description = "Disabled", data = false},
 }
+
 local crsIngredient = {
     {description = "1", data = 1},
     {description = "2", data = 2},
@@ -27,13 +29,81 @@ local crsIngredient = {
     {description = "8", data = 8},
     {description = "9", data = 9},
     {description = "10", data = 10},
+    {description = "15", data = 15},
+    {description = "20", data = 20},
 }
 
+local function rawIngredients(name, desc)
+    local ext = desc ~= nil and desc or name
+    return{
+        name = "cfgRaw"..name,
+        label = "Raw "..ext,
+        options = crsIngredient,
+        default = 10,
+    }
+end
+
+local function cookedIngredients(name, desc)
+    local ext = desc ~= nil and desc or name
+    return{
+        name = "cfgCooked"..name,
+        label = "Cooked "..ext,
+        options = crsIngredient,
+        default = 7,
+    }
+end
+
+local crsPrefabs = {
+    {"Bananas"},
+    {"Berries"},
+    {"BerriesJuicy", "Juicy Berries"},
+    {"BlueShrooms", "Blue Mushrooms"},
+    {"Cactus", "Cactus Flesh"},
+    {"Carrots"},
+    {"Corn"},
+    {"Durians"},
+    {"Dragonfruits"},
+    {"Eels"},
+    {"Eggplants"},
+    {"Fish"},
+    {"GreenShrooms", "Green Mushrooms"},
+    {"Honey"},
+    {"Pomegranates"},
+    {"Pumpkins"},
+    {"RedShrooms", "Red Mushrooms"},
+    {"Watermelons"},
+}
+
+local bbtPrefabs = { -- Birds and Berries and Trees for Friends
+    {"Apples"},
+    {"Blueberries"},
+    {"Greenberries"},
+    {"Pineapples"},
+}
+
+local mfPrefabs = {-- More Fruits
+    {"Grapes"},
+    {"Lemons"},
+    {"Limes"},
+    {"Oranges"},
+    {"Tomatoes"},
+    {"Strawberries"},
+}
+
+local function crsDivide(name, title)
+    return {   
+        name = "cfg"..name.."Title",
+        label = title,
+        options = {{description = "", data = false},},
+        default = false,
+    }
+end
+
 configuration_options = {
+    crsDivide("CF", "Canned Food Settings"),
     {
         name = "cfgRecipeTab",
         label = "Recipe Tab",
-        hover = "Recipe crafting tab.",
         options = {
             {description = "Tools", data = 1},
             {description = "Survival", data = 2},
@@ -48,7 +118,6 @@ configuration_options = {
     {
         name = "cfgRecipeTech",
         label = "Recipe Tech",
-        hover = "Crafting building requiremnt.",
         options = {
             {description = "None", data = 1},
             {description = "Science Machine", data = 2},
@@ -61,228 +130,21 @@ configuration_options = {
         },
         default = 2,
     },
-    {
-        name = "cfgRawBananas",
-        label = "Raw Bananas",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedBananas",
-        label = "Cooked Bananas",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawBerries",
-        label = "Raw Berries",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedBerries",
-        label = "Cooked Berries",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawBerriesJuicy",
-        label = "Raw Juicy Berries",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedBerriesJuicy",
-        label = "Cooked Juicy Berries",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawBlueShrooms",
-        label = "Raw Blue Mushrooms",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedBlueShrooms",
-        label = "Cooked Blue Mushrooms",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawCactus",
-        label = "Raw Cactus",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedCactus",
-        label = "Cooked Cactus",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawCarrots",
-        label = "Raw Carrots",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedCarrots",
-        label = "Cooked Carrots",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawCorn",
-        label = "Raw Corn",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedCorn",
-        label = "Cooked Corn",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawDurians",
-        label = "Raw Durians",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedDurians",
-        label = "Cooked Durians",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawDragonfruits",
-        label = "Raw Dragonfruits",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedDragonfruits",
-        label = "Cooked Dragonfruits",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawEels",
-        label = "Raw Eels",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedEels",
-        label = "Cooked Eels",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawEggplants",
-        label = "Raw Eggplants",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedEggplants",
-        label = "Cooked Eggplants",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawFish",
-        label = "Raw Fish",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedFish",
-        label = "Cooked Fish",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawGreenShrooms",
-        label = "Raw Green Mushrooms",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedGreenShrooms",
-        label = "Cooked Green Mushrooms",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawHoney",
-        label = "Raw Honey",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedHoney",
-        label = "Cooked Honey",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawPomegranates",
-        label = "Raw Pomegranates",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedPomegranates",
-        label = "Cooked Pomegranates",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawPumpkins",
-        label = "Raw Pumpkins",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedPumpkins",
-        label = "Cooked Pumpkins",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawRedShrooms",
-        label = "Raw Red Mushrooms",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedRedShrooms",
-        label = "Cooked Red Mushrooms",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgRawWatermelons",
-        label = "Raw Watermelons",
-        options = crsIngredient,
-        default = 10,
-    },
-    {
-        name = "cfgCookedWatermelons",
-        label = "Cooked Watermelons",
-        options = crsIngredient,
-        default = 7,
-    },
-    {
-        name = "cfgTestCheck",
-        label = "Installed",
-        options = {
-            {description = "Yes", data = true},
-        },
-        default = true,
-    },
+    
 }
+
+local function crsAddOptions(table)
+    for k=1, #table, 1 do -- raw and cooked ingredients options
+        desc = table[k][2] ~= nil
+        configuration_options[#configuration_options+1] = rawIngredients(table[k][1], desc and table[k][2])
+        configuration_options[#configuration_options+1] = cookedIngredients(table[k][1], desc and table[k][2])
+    end
+end
+
+crsAddOptions(crsPrefabs)
+configuration_options[#configuration_options] = crsDivide("BBT", "Birds and Berries and Trees")
+crsAddOptions(bbtPrefabs)
+configuration_options[#configuration_options] = crsDivide("MF", "More Fruits")
+crsAddOptions(mfPrefabs)
+configuration_options[#configuration_options] = crsDivide("X", "Other")
+configuration_options[#configuration_options+1] = {name = "cfgTestCheck", label = "Installed", options = {{description = "Yes", data = true},},default = true,}
