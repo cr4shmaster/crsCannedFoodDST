@@ -14,8 +14,8 @@ icon = "modicon.tex"
 
 
 local crsToggle = {
-    {description = "Enabled", data = true},
-    {description = "Disabled", data = false},
+    {description = "Yes", data = true},
+    {description = "No", data = false},
 }
 
 local crsIngredient = {
@@ -133,6 +133,18 @@ configuration_options = {
             {description = "Obs. Workbench", data = 8},
         },
         default = 2,
+    },
+    {
+        name = "cfgAddHoney",
+        label = "Honey Required",
+        options = crsToggle,
+        default = true,
+    },
+    {
+        name = "cfgHoney",
+        label = "How Much Honey",
+        options = crsIngredient,
+        default = 10,
     },
     
 }

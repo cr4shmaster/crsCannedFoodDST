@@ -32,7 +32,7 @@ local crsPrefabs = {
     {name = "eggplants",        cfg = "Eggplants",      raw = "eggplant"},
     {name = "fish",             cfg = "Fish",           raw = "fish"},
     {name = "green_shrooms",    cfg = "GreenShrooms",   raw = "green_cap"},
-    {name = "honey",            cfg = "Honey",          raw = "honey"},
+ -- {name = "honey",            cfg = "Honey",          raw = "honey"},
     {name = "pomegranates",     cfg = "Pomegranates",   raw = "pomegranate"},
     {name = "pumpkins",         cfg = "Pumpkins",       raw = "pumpkin"},
     {name = "red_shrooms",      cfg = "RedShrooms",     raw = "red_cap"},
@@ -127,16 +127,19 @@ local crsRecipeTechs = {
 }
 local recipeTech = crsRecipeTechs[getConfig("cfgRecipeTech")]
 
+local honey = getConfig("cfgAddHoney") -- check if honey requirement is enabled
 local function crsAddRecipe(name, cfg, raw)
-    local mats = {Ingredient(raw, getConfig("cfgRaw"..cfg))}
+    local mats = {Ingredient(raw, getConfig("cfgRaw"..cfg)), honey and Ingredient("honey", getConfig("cfgHoney")) or nil}
     return AddRecipe("canned_"..name, mats, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/"..name..".xml")
 end
-
+-- add recipes
 for k = 1, #crsPrefabs, 1 do
     crsAddRecipe(crsPrefabs[k].name, crsPrefabs[k].cfg, crsPrefabs[k].raw)
 end
+-- add honey separately
+AddRecipe("canned_honey", {Ingredient("honey", getConfig("cfgRawHoney"))}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/honey.xml")
 
--- ACTION
+-- ACTION --
 
 local OPEN_CAN = Action()
 OPEN_CAN.str = "Open"
