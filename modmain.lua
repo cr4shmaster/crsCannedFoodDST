@@ -10,6 +10,9 @@ local Ingredient = _G.Ingredient
 local TECH = _G.TECH
 local getConfig = GetModConfigData
 local KnownModIndex = _G.KnownModIndex
+local Action = _G.Action
+local ActionHandler = _G.ActionHandler
+local ACTIONS = _G.ACTIONS
 
 local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees and Flowers for Friends is enabled
 local mfr = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
@@ -123,3 +126,21 @@ end
 for k = 1, #crsPrefabs, 1 do
     crsAddRecipe(crsPrefabs[k].name, crsPrefabs[k].cfg, crsPrefabs[k].raw)
 end
+
+-- ACTION
+
+local OPEN_CAN = Action()
+OPEN_CAN.str = "Open"
+OPEN_CAN.id = "OPEN_CAN"
+OPEN_CAN.fn = function(act)
+    if act.invobject and act.invobject.components.cannedfood then
+        local target = act.target or act.doer
+        return act.invobject.components.cannedfood:Open(target)
+    end
+end
+AddAction(OPEN_CAN)
+AddStategraphActionHandler("wilson", ActionHandler(OPEN_CAN, "dolongaction"))
+AddStategraphActionHandler("wilson_client", ActionHandler(OPEN_CAN, "dolongaction"))
+AddComponentAction("INVENTORY", "cannedfood", function(inst, doer, actions, right)          
+    table.insert(actions, ACTIONS.OPEN_CAN)
+end)
