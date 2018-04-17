@@ -76,6 +76,10 @@ return crsCannedFood("bananas", "cave_banana", "Bananas", "cave_banana_cooked"),
         crsCannedFood("red_shrooms", "red_cap", "RedShrooms", "red_cap_cooked"),
         crsCannedFood("watermelons", "watermelon", "Watermelons", "watermelon_cooked"),
 
+        crsCannedFood("glowberries", "wormlight", "GlowBerries"),
+        crsCannedFood("lesser_glowberries", "wormlight_lesser", "LesserGlowBerries"),
+        crsCannedFood("lightbulbs", "lightbulb", "LightBulbs"),
+
         bbt and crsCannedFood("blueberries", "berrybl", "Blueberries", "berrybl_cooked") or nil,
         bbt and crsCannedFood("greenberries", "berrygr", "Greenberries", "berrygr_cooked") or nil,
         bbt and crsCannedFood("pineapples", "pappfruit", "Pineapples", "pappfruit_cooked") or nil,

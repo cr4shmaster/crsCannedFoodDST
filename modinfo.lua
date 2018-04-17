@@ -1,9 +1,9 @@
 -- More information here: https://sites.google.com/view/cr4shmaster/canned-food-ds-dst
 
-name = "Canned Food v1.0.3"
+name = "Canned Food v1.0.4"
 description = "Store your food safely forever!"
 author = "cr4shmaster"
-version = "1.0.3"
+version = "1.0.4"
 forumthread = ""
 api_version = 10
 all_clients_require_mod = true
@@ -47,7 +47,7 @@ local function cookedIngredients(name, desc)
     local ext = desc ~= nil and desc or name
     return{
         name = "cfgCooked"..name,
-        label = "Cooked "..ext,
+        label = ""..ext.." from can",
         options = crsIngredient,
         default = 7,
     }
@@ -72,6 +72,10 @@ local crsPrefabs = {
     {"Pumpkins"},
     {"RedShrooms", "Red Mushrooms"},
     {"Watermelons"},
+
+    {"GlowBerries", "Glow Berries"},
+    {"LesserGlowBerries", "Lesser Glow Berries"},
+    {"LightBulbs", "Light Bulbs"},
 }
 
 local bbtPrefabs = { -- Birds and Berries and Trees and Flowers for Friends
@@ -142,9 +146,9 @@ local function crsAddOptions(table)
 end
 
 crsAddOptions(crsPrefabs)
-configuration_options[#configuration_options] = crsDivide("BBT", "Birds and Berries and Trees")
+configuration_options[#configuration_options+1] = crsDivide("BBT", "Birds and Berries and Trees")
 crsAddOptions(bbtPrefabs)
-configuration_options[#configuration_options] = crsDivide("MFR", "More Fruits")
+configuration_options[#configuration_options+1] = crsDivide("MFR", "More Fruits")
 crsAddOptions(mfrPrefabs)
-configuration_options[#configuration_options] = crsDivide("ABC", "Other")
+configuration_options[#configuration_options+1] = crsDivide("ABC", "Other")
 configuration_options[#configuration_options+1] = {name = "cfgTestCheck", label = "Installed", options = {{description = "Yes", data = true},},default = true,}

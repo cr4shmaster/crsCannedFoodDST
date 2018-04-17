@@ -18,6 +18,7 @@ local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds a
 local mfr = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
 
 local crsPrefabs = {
+    -- food
     {name = "bananas",          cfg = "Bananas",        raw = "cave_banana"},
     {name = "berries",          cfg = "Berries",        raw = "berries"},
     {name = "berries_juicy",    cfg = "BerriesJuicy",   raw = "berries_juicy"},
@@ -35,7 +36,11 @@ local crsPrefabs = {
     {name = "pomegranates",     cfg = "Pomegranates",   raw = "pomegranate"},
     {name = "pumpkins",         cfg = "Pumpkins",       raw = "pumpkin"},
     {name = "red_shrooms",      cfg = "RedShrooms",     raw = "red_cap"},
-    {name = "watermelons",      cfg = "Watermelons",    raw = "watermelon"}
+    {name = "watermelons",      cfg = "Watermelons",    raw = "watermelon"},
+    -- light
+    {name = "glowberries",          cfg = "GlowBerries",        raw = "wormlight"},
+    {name = "lesser_glowberries",   cfg = "LesserGlowBerries",  raw = "wormlight_lesser"},
+    {name = "lightbulbs",           cfg = "LightBulbs",         raw = "lightbulb"},
 }
 
 -- Birds and Berries and Trees for Friends
@@ -43,7 +48,7 @@ local bbtPrefabs = {
     {name = "apples",           cfg = "Apples",         raw = "treeapple"},
     {name = "blueberries",      cfg = "Blueberries",    raw = "berrybl"},
     {name = "greenberries",     cfg = "Greenberries",   raw = "berrygr"},
-    {name = "pineapples",       cfg = "Pineapples",     raw = "pappfruit"}
+    {name = "pineapples",       cfg = "Pineapples",     raw = "pappfruit"},
 }
 if bbt then for k = 1, #bbtPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = bbtPrefabs[k] end end
 
@@ -54,7 +59,7 @@ local mfPrefabs = {
     {name = "limes",            cfg = "Limes",          raw = "limelitem"},
     {name = "oranges",          cfg = "Oranges",        raw = "orangeitm"},
     {name = "strawberries",     cfg = "Strawberries",   raw = "strawbbit"},
-    {name = "tomatoes",         cfg = "Tomatoes",       raw = "tomatobit"}
+    {name = "tomatoes",         cfg = "Tomatoes",       raw = "tomatobit"},
 }
 if mfr then for k = 1, #mfPrefabs, 1 do crsPrefabs[#crsPrefabs+1] = mfPrefabs[k] end end
 
@@ -76,6 +81,10 @@ STRINGS.NAMES.CANNED_POMEGRANATES = "Canned Pomegranates"
 STRINGS.NAMES.CANNED_PUMPKINS = "Canned Pumpkins"
 STRINGS.NAMES.CANNED_RED_SHROOMS = "Canned Red Mushrooms"
 STRINGS.NAMES.CANNED_WATERMELONS = "Canned Watermelons"
+
+STRINGS.NAMES.CANNED_GLOWBERRIES = "Canned Glow Berries"
+STRINGS.NAMES.CANNED_LESSER_GLOWBERRIES = "Canned Glow Berries"
+STRINGS.NAMES.CANNED_LIGHTBULBS = "Canned Light Bulbs"
 
 if bbt then
     STRINGS.NAMES.CANNED_BLUEBERRIES = "Canned Blueberries"
