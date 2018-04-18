@@ -1,9 +1,9 @@
 -- More information here: https://sites.google.com/view/cr4shmaster/canned-food-ds-dst
 
-name = "Canned Food v1.0.4"
+name = "Canned Food v1.0.5"
 description = "Store your food safely forever!"
 author = "cr4shmaster"
-version = "1.0.4"
+version = "1.0.5"
 forumthread = ""
 api_version = 10
 all_clients_require_mod = true
@@ -145,8 +145,19 @@ configuration_options = {
         label = "How Much Honey",
         options = crsIngredient,
         default = 10,
+    }, 
+    {
+        name = "cfgAddNitre",
+        label = "Nitre Required",
+        options = crsToggle,
+        default = true,
     },
-    
+    {
+        name = "cfgNitre",
+        label = "How Much Nitre",
+        options = crsIngredient,
+        default = 1,
+    }, 
 }
 
 local function crsAddOptions(table)

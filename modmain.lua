@@ -128,8 +128,9 @@ local crsRecipeTechs = {
 local recipeTech = crsRecipeTechs[getConfig("cfgRecipeTech")]
 
 local honey = getConfig("cfgAddHoney") -- check if honey requirement is enabled
+local nitre = getConfig("cfgAddNitre") -- check if nitre requirement is enabled
 local function crsAddRecipe(name, cfg, raw)
-    local mats = {Ingredient(raw, getConfig("cfgRaw"..cfg)), honey and Ingredient("honey", getConfig("cfgHoney")) or nil}
+    local mats = {Ingredient(raw, getConfig("cfgRaw"..cfg)), honey and Ingredient("honey", getConfig("cfgHoney")) or nil, nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}
     return AddRecipe("canned_"..name, mats, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/"..name..".xml")
 end
 -- add recipes
@@ -137,7 +138,7 @@ for k = 1, #crsPrefabs, 1 do
     crsAddRecipe(crsPrefabs[k].name, crsPrefabs[k].cfg, crsPrefabs[k].raw)
 end
 -- add honey separately
-AddRecipe("canned_honey", {Ingredient("honey", getConfig("cfgRawHoney"))}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/honey.xml")
+AddRecipe("canned_honey", {Ingredient("honey", getConfig("cfgRawHoney")), nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/honey.xml")
 
 -- ACTION --
 
