@@ -75,10 +75,21 @@ return crsCannedFood("bananas", "cave_banana", "Bananas", "cave_banana_cooked"),
         crsCannedFood("pumpkins", "pumpkin", "Pumpkins", "pumpkin_cooked"),
         crsCannedFood("red_shrooms", "red_cap", "RedShrooms", "red_cap_cooked"),
         crsCannedFood("watermelons", "watermelon", "Watermelons", "watermelon_cooked"),
-
+        -- light
         crsCannedFood("glowberries", "wormlight", "GlowBerries"),
         crsCannedFood("lesser_glowberries", "wormlight_lesser", "LesserGlowBerries"),
         crsCannedFood("lightbulbs", "lightbulb", "LightBulbs"),
+        -- update v1.0.6
+        crsCannedFood("garlic", "garlic", "Garlic"),
+        crsCannedFood("onions", "onion", "Onions"),
+        crsCannedFood("peppers", "pepper", "Peppers"),
+        crsCannedFood("potatoes", "potato", "Potatoes"),
+        crsCannedFood("toma_roots", "tomato", "TomaRoots"),
+        crsCannedFood("stone_fruits", "rock_avocado_fruit_ripe", "StoneFruits"),
+        crsCannedFood("succulents", "succulent_picked", "Succulents"),
+        crsCannedFood("cactus_flowers", "cactus_flower", "CactusFlowers"),
+        crsCannedFood("asparagus", "asparagus", "Asparagus"),
+        crsCannedFood("lichens", "cutlichen", "Lichens"),
 
         bbt and crsCannedFood("blueberries", "berrybl", "Blueberries", "berrybl_cooked") or nil,
         bbt and crsCannedFood("greenberries", "berrygr", "Greenberries", "berrygr_cooked") or nil,

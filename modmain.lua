@@ -32,7 +32,6 @@ local crsPrefabs = {
     {name = "eggplants",        cfg = "Eggplants",      raw = "eggplant"},
     {name = "fish",             cfg = "Fish",           raw = "fish"},
     {name = "green_shrooms",    cfg = "GreenShrooms",   raw = "green_cap"},
- -- {name = "honey",            cfg = "Honey",          raw = "honey"},
     {name = "pomegranates",     cfg = "Pomegranates",   raw = "pomegranate"},
     {name = "pumpkins",         cfg = "Pumpkins",       raw = "pumpkin"},
     {name = "red_shrooms",      cfg = "RedShrooms",     raw = "red_cap"},
@@ -41,6 +40,17 @@ local crsPrefabs = {
     {name = "glowberries",          cfg = "GlowBerries",        raw = "wormlight"},
     {name = "lesser_glowberries",   cfg = "LesserGlowBerries",  raw = "wormlight_lesser"},
     {name = "lightbulbs",           cfg = "LightBulbs",         raw = "lightbulb"},
+    -- update v1.0.6
+    {name = "garlic",           cfg = "Garlic",          raw = "garlic"},
+    {name = "onions",           cfg = "Onions",          raw = "onion"},
+    {name = "peppers",          cfg = "Peppers",         raw = "pepper"},
+    {name = "potatoes",         cfg = "Potatoes",        raw = "potato"},
+    {name = "toma_roots",       cfg = "TomaRoots",       raw = "tomato"},
+    {name = "stone_fruits",     cfg = "StoneFruits",     raw = "rock_avocado_fruit_ripe"},
+    {name = "succulents",       cfg = "Succulents",      raw = "succulent_picked"},
+    {name = "cactus_flowers",   cfg = "CactusFlowers",   raw = "cactus_flower"},
+    {name = "asparagus",        cfg = "Asparagus",       raw = "asparagus"},
+    {name = "lichens",          cfg = "Lichens",         raw = "cutlichen"},
 }
 
 -- Birds and Berries and Trees for Friends
@@ -81,10 +91,21 @@ STRINGS.NAMES.CANNED_POMEGRANATES = "Canned Pomegranates"
 STRINGS.NAMES.CANNED_PUMPKINS = "Canned Pumpkins"
 STRINGS.NAMES.CANNED_RED_SHROOMS = "Canned Red Mushrooms"
 STRINGS.NAMES.CANNED_WATERMELONS = "Canned Watermelons"
-
+-- light
 STRINGS.NAMES.CANNED_GLOWBERRIES = "Canned Glow Berries"
 STRINGS.NAMES.CANNED_LESSER_GLOWBERRIES = "Canned Glow Berries"
 STRINGS.NAMES.CANNED_LIGHTBULBS = "Canned Light Bulbs"
+-- update v1.0.6
+STRINGS.NAMES.CANNED_GARLIC = "Canned Garlic"
+STRINGS.NAMES.CANNED_ONIONS = "Canned Onions"
+STRINGS.NAMES.CANNED_PEPPERS = "Canned Peppers"
+STRINGS.NAMES.CANNED_POTATOES = "Canned Potatoes"
+STRINGS.NAMES.CANNED_TOMA_ROOTS = "Canned Toma Roots"
+STRINGS.NAMES.CANNED_STONE_FRUITS = "Canned Stone Fruits"
+STRINGS.NAMES.CANNED_SUCCULENTS = "Canned Succulents"
+STRINGS.NAMES.CANNED_CACTUS_FLOWERS = "Canned Cactus Flowers"
+STRINGS.NAMES.CANNED_ASPARAGUS = "Canned Asparagus"
+STRINGS.NAMES.CANNED_LICHENS = "Canned Lichens"
 
 if bbt then
     STRINGS.NAMES.CANNED_BLUEBERRIES = "Canned Blueberries"
