@@ -2,6 +2,11 @@ PrefabFiles = {
     "canned_food",
 }
 
+Assets = {
+    Asset( "IMAGE", "images/canned_food.tex" ),
+    Asset( "ATLAS", "images/canned_food.xml" ),
+}
+
 local _G = GLOBAL
 local STRINGS = _G.STRINGS
 local RECIPETABS = _G.RECIPETABS
@@ -13,6 +18,7 @@ local KnownModIndex = _G.KnownModIndex
 local Action = _G.Action
 local ActionHandler = _G.ActionHandler
 local ACTIONS = _G.ACTIONS
+local CUSTOMTABS = GLOBAL.CUSTOM_RECIPETABS
 
 local bbt = KnownModIndex:IsModEnabled("workshop-522117250") -- Check if Birds and Berries and Trees and Flowers for Friends is enabled
 local mfr = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fruits is enabled
@@ -125,7 +131,10 @@ end
 
 -- RECIPES --
 
+AddRecipeTab("Canned Food", 998, "images/canned_food.xml", "canned_food.tex")
+
 local crsRecipeTabs = {
+    CUSTOMTABS["Canned Food"],
     RECIPETABS.TOOLS,
     RECIPETABS.SURVIVAL,
     RECIPETABS.FARM,

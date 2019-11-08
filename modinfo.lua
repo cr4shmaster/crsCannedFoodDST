@@ -17,7 +17,7 @@ local function crsSetCount(k)
 end
 
 local function crsSetTab(k)
-    local name = {"Tools", "Survival", "Farm", "Science", "Structures", "Refine", "Magic"}
+    local name = {"Custom", "Tools", "Survival", "Farm", "Science", "Structures", "Refine", "Magic"}
     return {description = ""..name[k].."", data = k}
 end
 
@@ -99,7 +99,7 @@ end
 
 options = {
     crsDivide("CNF", "Canned Food Settings"),
-    {name = "cfgRecipeTab", label = "Recipe Tab", options = crsTab, default = 6,},
+    {name = "cfgRecipeTab", label = "Recipe Tab", options = crsTab, default = 1,},
     {name = "cfgRecipeTech", label = "Recipe Tech", options = crsTech, default = 2,},
     {name = "cfgAddHoney", label = "Honey Required", options = crsToggle, default = true,},
     {name = "cfgHoney", label = "How Much Honey", options = crsIngredient, default = 10,}, 
