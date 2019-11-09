@@ -57,6 +57,10 @@ local crsPrefabs = {
     {name = "cactus_flowers",   cfg = "CactusFlowers",   raw = "cactus_flower"},
     {name = "asparagus",        cfg = "Asparagus",       raw = "asparagus"},
     {name = "lichens",          cfg = "Lichens",         raw = "cutlichen"},
+    -- prepared
+    -- {name = "mandrake_soup",    cfg = "MandrakeSoup",    raw = "mandrakesoup"},
+    -- {name = "meaty_stew",       cfg = "MeatyStew",       raw = "bonestew"},
+    -- {name = "meatballs",        cfg = "Meatballs",       raw = "meatballs"},
 }
 
 -- Birds and Berries and Trees for Friends
@@ -112,6 +116,10 @@ STRINGS.NAMES.CANNED_SUCCULENTS = "Canned Succulents"
 STRINGS.NAMES.CANNED_CACTUS_FLOWERS = "Canned Cactus Flowers"
 STRINGS.NAMES.CANNED_ASPARAGUS = "Canned Asparagus"
 STRINGS.NAMES.CANNED_LICHENS = "Canned Lichens"
+-- prepared
+STRINGS.NAMES.CANNED_MEATBALLS = "Canned Meatballs"
+STRINGS.NAMES.CANNED_MANDRAKE_SOUP = "Canned Mandrake Soup"
+STRINGS.NAMES.CANNED_MEATY_STEW = "Canned Meaty Stew"
 
 if bbt then
     STRINGS.NAMES.CANNED_BLUEBERRIES = "Canned Blueberries"
@@ -131,7 +139,7 @@ end
 
 -- RECIPES --
 
-AddRecipeTab("Canned Food", 998, "images/canned_food.xml", "canned_food.tex")
+AddRecipeTab("Canned Food", 101, "images/canned_food.xml", "canned_food.tex")
 
 local crsRecipeTabs = {
     CUSTOMTABS["Canned Food"],
@@ -169,6 +177,10 @@ for k = 1, #crsPrefabs, 1 do
 end
 -- add honey separately
 AddRecipe("canned_honey", {Ingredient("honey", getConfig("cfgRawHoney")), nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/honey.xml")
+-- prepared foods
+AddRecipe("canned_meatballs", {Ingredient("meatballs", getConfig("cfgCannedMeatballs")), nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/meatballs.xml")
+AddRecipe("canned_meaty_stew", {Ingredient("bonestew", getConfig("cfgCannedMeatyStew")), nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/meaty_stew.xml")
+AddRecipe("canned_mandrake_soup", {Ingredient("mandrakesoup", getConfig("cfgCannedMandrakeSoup")), nitre and Ingredient("nitre", getConfig("cfgNitre")) or nil}, recipeTab, recipeTech, nil, nil, true, nil, nil, "images/inventoryimages/mandrake_soup.xml")
 
 -- ACTION --
 

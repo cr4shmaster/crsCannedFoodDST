@@ -36,9 +36,14 @@ local function rawIngredients(name, desc)
     return {name = "cfgRaw"..name, label = "Raw "..ext, options = crsIngredient, default = 10,}
 end
 
-local function cookedIngredients(name, desc)
+local function cannedIngredients(name, desc)
     local ext = desc ~= nil and desc or name
-    return {name = "cfgCooked"..name, label = ""..ext.." from can", options = crsIngredient, default = 7,}
+    return {name = "cfgCanned"..name, label = ""..ext.." from can", options = crsIngredient, default = 7,}
+end
+
+local function preparedFoods(name, desc)
+    local ext = desc ~= nil and desc or name
+    return {name = "cfgCanned"..name, label = ""..ext.." to and from can", options = crsIngredient, default = 1,}
 end
 
 local crsPrefabs = {
@@ -75,6 +80,10 @@ local crsPrefabs = {
     {"CactusFlowers", "Cactus Flowers"},
     {"Asparagus"},
     {"Lichens"},
+    -- prepared
+    -- {"Meatballs"},
+    -- {"MeatyStew", "Meaty Stew"},
+    -- {"MandrakeSoup", "Mandrake Soup"},
 }
 
 local bbtPrefabs = { -- Birds and Berries and Trees and Flowers for Friends
@@ -108,18 +117,26 @@ options = {
 }
 
 local function crsAddOptions(table)
-    for k=1, #table, 1 do -- raw and cooked ingredients
+    for k=1, #table, 1 do -- raw and canned ingredients
         desc = table[k][2] ~= nil
         options[#options+1] = rawIngredients(table[k][1], desc and table[k][2])
-        options[#options+1] = cookedIngredients(table[k][1], desc and table[k][2])
+        options[#options+1] = cannedIngredients(table[k][1], desc and table[k][2])
     end
 end
 
 crsAddOptions(crsPrefabs)
+
+options[#options+1] = crsDivide("PRP", "Prepared Foods")
+options[#options+1] = preparedFoods("Meatballs")
+options[#options+1] = preparedFoods("MeatyStew", "Meaty Stew")
+options[#options+1] = preparedFoods("MandrakeSoup", "Mandrake Soup")
+
 options[#options+1] = crsDivide("BBT", "Birds and Berries and Trees")
 crsAddOptions(bbtPrefabs)
+
 options[#options+1] = crsDivide("MFR", "More Fruits")
 crsAddOptions(mfrPrefabs)
+
 options[#options+1] = crsDivide("ABC", "Other")
 options[#options+1] = {name = "cfgTestCheck", label = "Installed", options = {{description = "Yes", data = true},},default = true,}
 

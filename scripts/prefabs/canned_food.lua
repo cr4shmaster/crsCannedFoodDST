@@ -6,7 +6,7 @@ local mfr = KnownModIndex:IsModEnabled("workshop-861013495") -- Check if More Fr
 local crsCannedFoodDST = getConfig("cfgTestCheck", "workshop-1361546797") and "workshop-1361546797" or "crsCannedFoodDST"
 
 local function crsCannedFood(prefab, raw, cfg, cooked)
-    local mult = getConfig("cfgCooked"..cfg, crsCannedFoodDST)
+    local mult = getConfig("cfgCanned"..cfg, crsCannedFoodDST)
     
     local assets = {
         Asset("ATLAS", "images/inventoryimages/"..prefab..".xml"),
@@ -80,16 +80,20 @@ return crsCannedFood("bananas", "cave_banana", "Bananas", "cave_banana_cooked"),
         crsCannedFood("lesser_glowberries", "wormlight_lesser", "LesserGlowBerries"),
         crsCannedFood("lightbulbs", "lightbulb", "LightBulbs"),
         -- update v1.0.6
-        crsCannedFood("garlic", "garlic", "Garlic"),
-        crsCannedFood("onions", "onion", "Onions"),
-        crsCannedFood("peppers", "pepper", "Peppers"),
-        crsCannedFood("potatoes", "potato", "Potatoes"),
-        crsCannedFood("toma_roots", "tomato", "TomaRoots"),
-        crsCannedFood("stone_fruits", "rock_avocado_fruit_ripe", "StoneFruits"),
+        crsCannedFood("garlic", "garlic", "Garlic", "garlic_cooked"),
+        crsCannedFood("onions", "onion", "Onions", "onion_cooked"),
+        crsCannedFood("peppers", "pepper", "Peppers", "pepper_cooked"),
+        crsCannedFood("potatoes", "potato", "Potatoes", "potato_cooked"),
+        crsCannedFood("toma_roots", "tomato", "TomaRoots", "tomato_cooked"),
+        crsCannedFood("stone_fruits", "rock_avocado_fruit_ripe", "StoneFruits", "rock_avocado_fruit_ripe_cooked"),
         crsCannedFood("succulents", "succulent_picked", "Succulents"),
         crsCannedFood("cactus_flowers", "cactus_flower", "CactusFlowers"),
-        crsCannedFood("asparagus", "asparagus", "Asparagus"),
+        crsCannedFood("asparagus", "asparagus", "Asparagus", "asparagus_cooked"),
         crsCannedFood("lichens", "cutlichen", "Lichens"),
+        -- prepared
+        crsCannedFood("meatballs", "meatballs", "Meatballs"),
+        crsCannedFood("meaty_stew", "bonestew", "MeatyStew"),
+        crsCannedFood("mandrake_soup", "mandrakesoup", "MandrakeSoup"),
 
         bbt and crsCannedFood("blueberries", "berrybl", "Blueberries", "berrybl_cooked") or nil,
         bbt and crsCannedFood("greenberries", "berrygr", "Greenberries", "berrygr_cooked") or nil,
